@@ -1,20 +1,27 @@
-import { Bell, Search, User, MessageSquareMore  } from 'lucide-react';
+import { Bell, Menu, Search, User, MessageSquareMore } from 'lucide-react';
 
 export default function Navbar() {
 
   return (
-    <header className="h-16 bg-(--color-dark) flex items-center justify-between px-6">
-      <div className="flex items-center gap-2 bg-(--color-dark-2) hover:border border-(--color-primary) rounded-lg px-3 py-2 w-72">
-        <Search className='text-gray-400'  />
-        <input
-          type="text"
-          placeholder="Rechercher..."
-          className="bg-transparent text-sm text-white   placeholder-gray-500 outline-none w-full"
-        />
+    <header className="h-16 bg-(--color-dark) border-b-2 border-(--color-primary) flex items-center justify-between px-6">
+      <div className='flex items-center gap-4'>
+        <button className="relative text-gray-400 hover:text-(--color-primary) transition-colors">
+          <Menu size={30} />
+        </button>
+
+        <div className="flex items-left gap-2 bg-(--color-dark-2) hover:border border-(--color-primary) rounded-lg px-3 py-2 w-72">
+          <Search className='text-gray-400' />
+          <input
+            type="text"
+            placeholder="Rechercher..."
+            className="bg-transparent text-sm text-white   placeholder-gray-500 outline-none w-full"
+          />
+        </div>
       </div>
 
+
       <div className="flex items-center gap-4">
-        
+
         {/* Cloche notifications */}
         <button className="relative text-gray-400 hover:text-(--color-primary) transition-colors">
           <MessageSquareMore size={20} />

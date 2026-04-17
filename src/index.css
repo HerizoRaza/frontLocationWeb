@@ -6,3 +6,9 @@
   --color-primary: #8B5E3C;
   --color-primary-light: #c8845a;
 }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-dark);
+  color: white;
+}

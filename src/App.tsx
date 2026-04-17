@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard'
 function App() {
 
   return (
-        <BrowserRouter>
+    <BrowserRouter>
       <DashboardLayout>
         <Routes>
           <Route path="/" element={<Dashboard />} />
