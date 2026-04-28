@@ -1,5 +1,4 @@
 import StatCard from "../components/ui/StatCard";
-import type { StockData } from "../components/ui/StatCard";
 import { FleetDonut } from "../components/ui/FleetDonut";
 import { RevenueChart } from "../components/ui/RevenueChart";
 import { ModelStatsChart } from "../components/ui/ModelStatsChart";
@@ -7,6 +6,17 @@ import { AlertsPanel } from "../components/ui/AlertsPanel";
 import { VehicleTable } from "../components/ui/VehicleTable";
 import { Car, TrendingUp, CircleDollarSign, FileText } from "lucide-react";
 import { vehicles, modelStats, alerts, revenueData } from "../data/mockData";
+import { ArrowUpRight, ArrowDownRight } from "lucide-react";
+
+// ✅ Types définis avant leur utilisation
+export type StockData = {
+  name: string;
+  subtitle: string;
+  price: string;
+  change: number;
+  logo: React.ReactNode;
+  logoColor: string;
+};
 
 const stocks: StockData[] = [
   {
@@ -43,12 +53,12 @@ const stocks: StockData[] = [
   },
 ];
 
+// ✅ Dashboard est une page — pas besoin de props
 export default function Dashboard() {
   return (
-    <div className="flex flex-col gap-6 max-w-6xl mx-auto px-4 py-6">
+    <div className="flex flex-col gap-6 max-w-6xl mx-auto">
 
-<div className="flex items-center justify-between gap-3">
-
+      <div className="flex items-center justify-between gap-3">
         <div className="flex flex-col gap-1">
           <h1 className="text-white text-2xl font-bold">Tableau de bord</h1>
           <p className="text-muted-foreground text-sm">
@@ -70,14 +80,51 @@ export default function Dashboard() {
             })}
           </span>
         </div>
-
       </div>
 
       {/* KPI Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        {stocks.map((stock) => (
-          <StatCard key={stock.name} data={stock} />
-        ))}
+        {stocks.map((stock) => {
+          // ✅ isPositive basé sur stock.change, pas data.change
+          const isPositive = stock.change >= 0;
+
+          return (
+            <StatCard key={stock.name}>
+              <div className="flex items-center gap-3">
+                <div
+                  className="w-10 h-10 rounded-full flex items-center justify-center text-white text-sm font-semibold shrink-0"
+                  // ✅ stock.logoColor au lieu de data.logoColor
+                  style={{ backgroundColor: stock.logoColor }}
+                >
+                  {/* ✅ stock.logo au lieu de data.logo */}
+                  {stock.logo}
+                </div>
+                <div className="overflow-hidden">
+                  <p className="text-white font-semibold text-sm truncate">{stock.name}</p>
+                  <p className="text-gray-500 text-xs truncate">{stock.subtitle}</p>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span className="text-white text-xl font-bold">
+                  {stock.price}
+                </span>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <span
+                  className={`flex items-center gap-0.5 text-sm font-semibold px-2 py-0.5 rounded-md ${isPositive
+                    ? "text-emerald-400 bg-emerald-400/10"
+                    : "text-red-400 bg-red-400/10"
+                    }`}
+                >
+                  {isPositive ? <ArrowUpRight size={14} /> : <ArrowDownRight size={14} />}
+                  {Math.abs(stock.change).toFixed(2)}%
+                </span>
+              </div>
+            </StatCard>
+          );
+        })}
       </div>
 
       {/* Donut + Revenus */}

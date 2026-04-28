@@ -12,7 +12,7 @@ interface ButtonProps {
 }
 
 const variants: Record<ButtonVariant, string> = {
-  primary: 'bg-blue-600 hover:bg-blue-700 text-white',
+  primary: 'bg-(--color-primary) gap-1.5 rounded-full px-3 py-1 text-white',
   secondary: 'bg-gray-600 hover:bg-gray-700 text-white',
   danger: 'bg-red-600 hover:bg-red-700 text-white',
   ghost: 'bg-transparent hover:bg-gray-100 text-gray-700',

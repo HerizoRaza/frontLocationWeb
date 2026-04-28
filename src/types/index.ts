@@ -1,5 +1,4 @@
 export type VehicleStatus = 'en_location' | 'disponible' | 'maintenance' | 'retard' | 'retour_prevu';
-
 export interface Vehicle {
   id: string;
   immatriculation: string;
@@ -13,6 +12,15 @@ export interface Vehicle {
   dateRetourPrevue?: string;
   tarifJour: number;
   carburant: 'essence' | 'diesel' | 'electrique' | 'hybride';
+}
+
+export interface Authentification {
+  firstname: string;
+  lastname: string;
+  username: string,
+  email: string;
+  telephone: string;
+  role: 'admin' | 'chauffeur' | 'comptable' | 'gestionnaire'
 }
 
 export interface Alert {

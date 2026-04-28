@@ -1,11 +1,16 @@
 import { Bell, Menu, Search, User, MessageSquareMore } from 'lucide-react';
+type Props = {
+  onMenuClick: () => void;
+};
 
-export default function Navbar() {
+export default function Navbar({ onMenuClick }: Props) {
 
   return (
     <header className="h-16 bg-(--color-dark) border-b-2 border-(--color-primary) flex items-center justify-between px-6">
       <div className='flex items-center gap-4'>
-        <button className="relative text-gray-400 hover:text-(--color-primary) transition-colors">
+        <button  
+        onClick={onMenuClick}
+        className="relative text-gray-400 hover:text-(--color-primary) transition-colors">
           <Menu size={30} />
         </button>
 
