@@ -1,8 +1,10 @@
 import Button from "../components/ui/Button";
 import StatCard from "../components/ui/StatCard";
+import { vehicles } from "../data/mockData";
 import {
   Users, CheckCircle2, AlertCircle, Shield,
 } from 'lucide-react'
+import { VehicleTable } from "../components/ui/VehicleTable";
 
 export type StockData = {
   name: string;
@@ -45,7 +47,7 @@ export default function Authentification() {
         <div className="flex flex-col gap-1">
           <h1 className="text-white text-2xl font-bold">Authentification</h1>
           <p className="text-muted-foreground text-sm">
-           Gestion des accès et des utilisateurs
+            Gestion des accès et des utilisateurs
           </p>
         </div>
 
@@ -84,6 +86,9 @@ export default function Authentification() {
             </StatCard>
           );
         })}
+      </div>
+      <div>
+        <VehicleTable vehicles={vehicles} />
       </div>
     </div>
   );
